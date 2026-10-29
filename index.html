@@ -155,6 +155,36 @@ section{padding:84px 0}
 .wax{position:absolute;bottom:-20px;inset-inline-start:44px;width:52px;height:52px;border-radius:50%;background:radial-gradient(circle at 34% 30%,var(--i500),var(--i800));display:flex;align-items:center;justify-content:center;box-shadow:0 14px 26px -10px rgba(38,32,110,.6)}
 .wax svg{width:24px;height:24px;fill:#fff;stroke:none}
 
+/* places */
+.places-wrap{max-width:760px;margin:0 auto}
+.pform{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:26px;box-shadow:0 16px 34px -22px rgba(38,32,110,.3);display:flex;flex-direction:column;gap:14px}
+.pform input[type=text]{font-family:inherit;font-size:1rem;padding:13px 18px;border:1px solid var(--line);border-radius:16px;background:#FBFBFF;color:var(--ink);outline:none;width:100%}
+.pform input[type=text]:focus{border-color:var(--i400);box-shadow:0 0 0 4px rgba(129,140,248,.18)}
+.prow{display:flex;gap:20px;flex-wrap:wrap;align-items:center}
+.plabel{font-size:.82rem;font-weight:700;color:var(--muted)}
+.ppills{display:flex;gap:8px;flex-wrap:wrap}
+.ppill{font-family:inherit;font-size:.88rem;font-weight:700;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;transition:all .15s}
+.ppill.active{background:var(--i600);border-color:var(--i600);color:#fff}
+.psubmit{align-self:flex-start;border:0;cursor:pointer}
+.pcount{text-align:center;color:var(--muted);font-size:.88rem;font-weight:600;margin:26px 0 14px;min-height:1.5em}
+.plist{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){.plist{grid-template-columns:1fr}}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px 22px;box-shadow:0 14px 30px -22px rgba(38,32,110,.3)}
+.pcard.done{background:#F7F8FF}
+.pcard h3{font-size:1.1rem;font-weight:800}
+.ptype{display:inline-block;font-size:.76rem;font-weight:700;padding:3px 11px;border-radius:999px;margin-top:8px}
+.ptype.rest{background:#FDF0E2;color:#C4661A}
+.ptype.cafe{background:#EEF0FF;color:#4338CA}
+.ptype.other{background:#F1F1F8;color:#5D5A85}
+.pnote{color:var(--muted);font-size:.9rem;margin-top:8px}
+.pwho{font-size:.78rem;color:#8f8bd6;font-weight:600;margin-top:10px}
+.pacts{display:flex;gap:8px;margin-top:14px}
+.pbtn{font-family:inherit;font-size:.82rem;font-weight:700;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer}
+.pbtn.go{background:var(--i50);color:var(--i700);border-color:var(--i100)}
+.pbtn.del{margin-inline-start:auto}
+.pdone-badge{display:inline-block;font-size:.76rem;font-weight:800;color:#1E7A4C;background:#E4F5EC;padding:3px 11px;border-radius:999px;margin-top:8px;margin-inline-start:6px}
+.pempty{text-align:center;color:var(--muted);font-weight:600;border:1.5px dashed var(--i200);border-radius:22px;padding:30px;margin-top:4px}
+
 /* footer */
 footer{background:var(--night);color:#A7A3DE;text-align:center;padding:56px 0 44px}
 footer .fmark{display:flex;justify-content:center;align-items:center;gap:4px;margin-bottom:14px}
@@ -219,6 +249,7 @@ footer .fine{font-size:.8rem;margin-top:8px;color:#6E6AA8}
     <div class="links">
       <a class="nl" href="#memories">خاطره‌ها</a>
       <a class="nl" href="#gallery">قاب‌ها</a>
+      <a class="nl" href="#places">جاهای بعدی‌مون</a>
       <a class="nl" href="#music">آهنگ ما</a>
       <a class="nl" href="#letter">نامه</a>
       <a class="cta" href="#letter">تقدیم به حدیث</a>
@@ -312,6 +343,41 @@ footer .fine{font-size:.8rem;margin-top:8px;color:#6E6AA8}
   </div>
 </section>
 
+<section id="places" style="padding-top:10px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag"><svg class="ic" viewBox="0 0 24 24"><path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg> جاهای بعدی‌مون</span>
+      <h2>جاهای بعدی‌مون</h2>
+      <p>رستوران‌ها، کافه‌ها و جاهایی که قراره با هم بریم؛ هر چی به ذهنمون رسید، همین‌جا اضافه می‌کنیم.</p>
+    </div>
+    <div class="places-wrap reveal">
+      <form class="pform" id="placeForm">
+        <input type="text" id="placeName" placeholder="اسم جا" maxlength="80" required>
+        <div class="prow">
+          <span class="plabel">نوع جا:</span>
+          <div class="ppills" id="typePills">
+            <button type="button" class="ppill active" data-type="رستوران">رستوران</button>
+            <button type="button" class="ppill" data-type="کافه">کافه</button>
+            <button type="button" class="ppill" data-type="جای دیگه">جای دیگه</button>
+          </div>
+        </div>
+        <div class="prow">
+          <span class="plabel">کی اضافه می‌کنه؟</span>
+          <div class="ppills" id="whoPills">
+            <button type="button" class="ppill active" data-who="آرین">آرین</button>
+            <button type="button" class="ppill" data-who="حدیث">حدیث</button>
+          </div>
+        </div>
+        <input type="text" id="placeNote" placeholder="یه توضیح کوتاه (اختیاری)" maxlength="120">
+        <button type="submit" class="btn btn-solid psubmit">اضافه کن</button>
+      </form>
+      <p class="pcount" id="placeCount"></p>
+      <div class="plist" id="placeList"></div>
+      <div class="pempty" id="placeEmpty">هنوز جایی اضافه نشده؛ اولین جا رو تو اضافه کن!</div>
+    </div>
+  </div>
+</section>
+
 <section id="music" style="padding-top:10px">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -383,6 +449,72 @@ footer .fine{font-size:.8rem;margin-top:8px;color:#6E6AA8}
 <script>
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ---- جاهای بعدی‌مون ---- */
+/* ذخیره‌سازی: در حال حاضر روی همین دستگاه (localStorage) است.
+   برای اینکه هر دو گوشی یک لیست مشترک ببینند، فقط همین PlacesStore
+   با نسخه‌ی سوپابیس جایگزین می‌شود؛ بقیه‌ی کد دست نمی‌خورد. */
+const PlacesStore = {
+  key: 'crowfox-places-v1',
+  load(){ try { return JSON.parse(localStorage.getItem(this.key)) || []; } catch(e){ return []; } },
+  save(list){ try { localStorage.setItem(this.key, JSON.stringify(list)); } catch(e){} }
+};
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let places = PlacesStore.load();
+let selType = 'رستوران';
+let selWho = localStorage.getItem('crowfox-who') || 'آرین';
+function typeCls(t){ return t === 'رستوران' ? 'rest' : t === 'کافه' ? 'cafe' : 'other'; }
+function syncPills(){
+  document.querySelectorAll('#typePills .ppill').forEach(b => b.classList.toggle('active', b.dataset.type === selType));
+  document.querySelectorAll('#whoPills .ppill').forEach(b => b.classList.toggle('active', b.dataset.who === selWho));
+}
+function renderPlaces(){
+  const done = places.filter(p => p.done).length;
+  $('placeCount').textContent = places.length === 0 ? '' : places.length + ' جا توی لیسته' + (done ? '، ' + done + ' تاش رو رفتیم ✓' : '');
+  $('placeEmpty').style.display = places.length ? 'none' : 'block';
+  $('placeList').innerHTML = places.map(p => '' +
+    '<div class="pcard' + (p.done ? ' done' : '') + '">' +
+      '<h3>' + esc(p.name) + '</h3>' +
+      '<span class="ptype ' + typeCls(p.type) + '">' + esc(p.type) + '</span>' +
+      (p.done ? '<span class="pdone-badge">رفتیم ✓</span>' : '') +
+      (p.note ? '<p class="pnote">' + esc(p.note) + '</p>' : '') +
+      '<p class="pwho">پیشنهاد ' + esc(p.who) + '</p>' +
+      '<div class="pacts">' +
+        '<button class="pbtn go" data-act="toggle" data-id="' + p.id + '">' + (p.done ? 'برگردون' : 'رفتیم ✓') + '</button>' +
+        '<button class="pbtn del" data-act="del" data-id="' + p.id + '">حذف</button>' +
+      '</div>' +
+    '</div>').join('');
+}
+$('typePills').addEventListener('click', e => {
+  const b = e.target.closest('.ppill'); if (!b) return;
+  selType = b.dataset.type; syncPills();
+});
+$('whoPills').addEventListener('click', e => {
+  const b = e.target.closest('.ppill'); if (!b) return;
+  selWho = b.dataset.who;
+  try { localStorage.setItem('crowfox-who', selWho); } catch(e){}
+  syncPills();
+});
+$('placeForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = $('placeName').value.trim();
+  if (!name) return;
+  places.unshift({ id: Date.now(), name: name, type: selType, note: $('placeNote').value.trim(), who: selWho, done: false });
+  PlacesStore.save(places);
+  $('placeName').value = ''; $('placeNote').value = '';
+  renderPlaces();
+});
+$('placeList').addEventListener('click', e => {
+  const b = e.target.closest('.pbtn'); if (!b) return;
+  const id = Number(b.dataset.id);
+  if (b.dataset.act === 'del') places = places.filter(p => p.id !== id);
+  if (b.dataset.act === 'toggle') places = places.map(p => p.id === id ? Object.assign({}, p, { done: !p.done }) : p);
+  PlacesStore.save(places);
+  renderPlaces();
+});
+syncPills();
+renderPlaces();
 </script>
 </body>
 </html>
